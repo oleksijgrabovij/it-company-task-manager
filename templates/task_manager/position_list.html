@@ -1,14 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Список посад</h2>
+        <a href="{% url 'task_manager:position-create' %}" class="btn btn-primary">+ Створити посаду</a>
     </div>
+
     <table class="table table-hover shadow-sm">
         <thead class="table-dark">
             <tr>
                 <th>ID</th>
                 <th>Назва</th>
+                <th class="text-end">Дії</th>
             </tr>
         </thead>
         <tbody>
@@ -16,8 +19,14 @@
                 <tr>
                     <td>{{ position.id }}</td>
                     <td>{{ position.name }}</td>
+                    <td class="text-end">
+                        <a href="{% url 'task_manager:position-update' pk=position.id %}" class="btn btn-sm btn-outline-secondary">Редагувати</a>
+                        <a href="{% url 'task_manager:position-delete' pk=position.id %}" class="btn btn-sm btn-outline-danger">Видалити</a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+
+    {% include "includes/pagination.html" %}
 {% endblock %}

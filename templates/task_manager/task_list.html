@@ -3,7 +3,7 @@
 {% block content %}
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Список завдань</h2>
-        <!-- Тут згодом буде кнопка "Створити завдання" -->
+        <a href="{% url 'task_manager:task-create' %}" class="btn btn-primary">+ Створити завдання</a>
     </div>
 
     <table class="table table-hover shadow-sm">
@@ -21,9 +21,11 @@
                 <tr>
                     <td>{{ task.id }}</td>
                     <td>
-                        <a href="{% url 'task_manager:task-detail' pk=task.id %}">{{ task.name }}</a>
+                        <a href="{% url 'task_manager:task-detail' pk=task.id %}">
+                            {{ task.name }}
+                        </a>
                     </td>
-                    <td>{{ task.deadline|default:"Немає" }}</td>
+                    <td>{{ task.deadline|date:"M. j, Y" }}</td>
                     <td>{{ task.priority }}</td>
                     <td>
                         {% if task.is_completed %}
@@ -33,7 +35,13 @@
                         {% endif %}
                     </td>
                 </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center text-muted">Завдань поки немає.</td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
+
+    {% include "includes/pagination.html" %}
 {% endblock %}

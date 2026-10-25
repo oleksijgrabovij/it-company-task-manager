@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm mt-4">
+                <div class="card-body">
+                    <h2 class="mb-4">
+                        {% if object %}
+                            Редагувати тип завдання
+                        {% else %}
+                            Створити новий тип завдання
+                        {% endif %}
+                    </h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-success">Зберегти</button>
+                        <a href="{% url 'task_manager:tasktype-list' %}" class="btn btn-secondary">Скасувати</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

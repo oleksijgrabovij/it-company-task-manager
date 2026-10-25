@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm mt-4 border-danger">
+                <div class="card-body text-center">
+                    <h2 class="text-danger mb-3">Видалення працівника</h2>
+                    <p class="mb-4">Ви дійсно хочете видалити працівника <strong>{{ worker.username }}</strong>?</p>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Так, видалити</button>
+                        <a href="{% url 'task_manager:worker-detail' pk=worker.id %}" class="btn btn-secondary">Скасувати</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

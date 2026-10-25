@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Список працівників</h2>
+        <a href="{% url 'task_manager:worker-create' %}" class="btn btn-primary">+ Створити працівника</a>
     </div>
+
     <table class="table table-hover shadow-sm">
         <thead class="table-dark">
             <tr>
@@ -17,11 +19,25 @@
             {% for worker in worker_list %}
                 <tr>
                     <td>{{ worker.id }}</td>
-                    <td>{{ worker.username }}</td>
+                    <td>
+                        <a href="{% url 'task_manager:worker-detail' pk=worker.id %}">
+                            {{ worker.username }}
+                        </a>
+                    </td>
                     <td>{{ worker.first_name }} {{ worker.last_name }}</td>
-                    <td>{{ worker.position.name|default:"Без посади" }}</td>
+                    <td>
+                        <span class="badge bg-info text-dark">
+                            {{ worker.position.name|default:"Без посади" }}
+                        </span>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center text-muted">Працівників поки немає.</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+
+    {% include "includes/pagination.html" %}
 {% endblock %}
