@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="mb-4">
+        <h2>Типи завдань</h2>
+    </div>
+    <table class="table table-hover shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Назва</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tasktype in tasktype_list %}
+                <tr>
+                    <td>{{ tasktype.id }}</td>
+                    <td>{{ tasktype.name }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

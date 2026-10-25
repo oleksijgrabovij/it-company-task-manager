@@ -22,3 +22,17 @@ class TaskListView(generic.ListView):
 
 class TaskDetailView(generic.DetailView):
     model = Task
+
+
+class PositionListView(generic.ListView):
+    model = Position
+
+
+class WorkerListView(generic.ListView):
+    model = Worker
+
+
+class TaskTypeListView(generic.ListView):
+    model = TaskType
+
+
