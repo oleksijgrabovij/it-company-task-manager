@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from task_manager.models import Task, TaskType, Position, Worker
+from django.views import generic
 
 def index(request):
     num_tasks = Task.objects.count()
@@ -13,3 +14,11 @@ def index(request):
         "num_task_types": num_task_types,
     }
     return render(request, 'task_manager/index.html', context=context)
+
+
+class TaskListView(generic.ListView):
+    model = Task
+
+
+class TaskDetailView(generic.DetailView):
+    model = Task

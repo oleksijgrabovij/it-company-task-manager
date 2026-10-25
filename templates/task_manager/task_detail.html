@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="mb-4">
+        <h1>{{ task.name }}</h1>
+        <p class="text-muted">Тип: {{ task.task_type.name }} | Пріоритет: {{ task.priority }}</p>
+    </div>
+    
+    <div class="mb-4">
+        <p><strong>Дедлайн:</strong> {{ task.deadline|default:"Немає" }}</p>
+        <p><strong>Опис:</strong> {{ task.description|default:"Опис відсутній." }}</p>
+    </div>
+    
+    <h3>Виконавці:</h3>
+    <ul>
+        {% for worker in task.assignees.all %}
+            <li>{{ worker.first_name }} {{ worker.last_name }} ({{ worker.username }}) - {{ worker.position.name }}</li>
+        {% empty %}
+            <li>Поки немає призначених виконавців.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,6 +1,40 @@
-<h1>Hello, Task Manager!</h1>
+{% extends "base.html" %}
 
-<p>Кількість завдань: {{ num_tasks }}</p>
-<p>Кількість працівників: {{ num_workers }}</p>
-<p>Кількість посад: {{ num_positions }}</p>
-<p>Кількість типів завдань: {{ num_task_types }}</p>
+{% block content %}
+    <h1 class="mb-4">Dashboard</h1>
+    
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Tasks</h5>
+                    <p class="card-text display-4">{{ num_tasks }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Workers</h5>
+                    <p class="card-text display-4">{{ num_workers }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Positions</h5>
+                    <p class="card-text display-4">{{ num_positions }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-danger mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Task Types</h5>
+                    <p class="card-text display-4">{{ num_task_types }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
