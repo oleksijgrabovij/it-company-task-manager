@@ -1,10 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
         <h2>Список завдань</h2>
         <a href="{% url 'task_manager:task-create' %}" class="btn btn-primary">+ Створити завдання</a>
     </div>
+
+    <form method="get" class="row g-2 mb-4">
+        <div class="col-md-4">
+            {{ search_form.name }}
+        </div>
+        <div class="col-md-4">
+            {{ search_form.task_type }}
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-outline-primary">Шукати</button>
+            <a href="{% url 'task_manager:task-list' %}" class="btn btn-outline-secondary">Скинути</a>
+        </div>
+    </form>
 
     <table class="table table-hover shadow-sm">
         <thead class="table-dark">
@@ -37,7 +50,7 @@
                 </tr>
             {% empty %}
                 <tr>
-                    <td colspan="5" class="text-center text-muted">Завдань поки немає.</td>
+                    <td colspan="5" class="text-center text-muted">Завдань не знайдено.</td>
                 </tr>
             {% endfor %}
         </tbody>

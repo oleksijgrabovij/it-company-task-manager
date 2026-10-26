@@ -1,10 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
         <h2>Список працівників</h2>
         <a href="{% url 'task_manager:worker-create' %}" class="btn btn-primary">+ Створити працівника</a>
     </div>
+
+    <form method="get" class="row g-2 mb-4">
+        <div class="col-md-4">
+            {{ search_form.username }}
+        </div>
+        <div class="col-md-4">
+            {{ search_form.position }}
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-outline-primary">Шукати</button>
+            <a href="{% url 'task_manager:worker-list' %}" class="btn btn-outline-secondary">Скинути</a>
+        </div>
+    </form>
 
     <table class="table table-hover shadow-sm">
         <thead class="table-dark">
@@ -33,7 +46,7 @@
                 </tr>
             {% empty %}
                 <tr>
-                    <td colspan="4" class="text-center text-muted">Працівників поки немає.</td>
+                    <td colspan="4" class="text-center text-muted">Працівників не знайдено.</td>
                 </tr>
             {% endfor %}
         </tbody>
