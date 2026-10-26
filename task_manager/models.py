@@ -5,14 +5,14 @@ from django.contrib.auth.models import AbstractUser
 class Position(models.Model):
     name = models.CharField(max_length=255, unique=True)
 
-    def __str__(self: 'Position') -> str:
+    def __str__(self: "Position") -> str:
         return self.name
 
 
 class TaskType(models.Model):
     name = models.CharField(max_length=255, unique=True)
 
-    def __str__(self: 'TaskType') -> str:
+    def __str__(self: "TaskType") -> str:
         return self.name
 
 
@@ -20,21 +20,21 @@ class Worker(AbstractUser):
     position = models.ForeignKey(
         Position,
         on_delete=models.CASCADE,
-        related_name='workers',
+        related_name="workers",
         null=True,
         blank=True
     )
 
-    def __str__(self: 'Worker') -> str:
+    def __str__(self: "Worker") -> str:
         return self.username
 
 
 class Task(models.Model):
     PRIORITY_CHOICES = [
-        ('Urgent', 'Urgent'),
-        ('High', 'High'),
-        ('Medium', 'Medium'),
-        ('Low', 'Low'),
+        ("Urgent", "Urgent"),
+        ("High", "High"),
+        ("Medium", "Medium"),
+        ("Low", "Low"),
     ]
     name = models.CharField(max_length=255)
     description = models.TextField()
@@ -43,14 +43,14 @@ class Task(models.Model):
     priority = models.CharField(
         max_length=10,
         choices=PRIORITY_CHOICES,
-        default='Medium'
+        default="Medium"
     )
     task_type = models.ForeignKey(
         TaskType,
         on_delete=models.CASCADE,
-        related_name='tasks'
+        related_name="tasks"
     )
-    assignees = models.ManyToManyField(Worker, related_name='tasks')
+    assignees = models.ManyToManyField(Worker, related_name="tasks")
 
-    def __str__(self: 'Task') -> str:
+    def __str__(self: "Task") -> str:
         return self.name
