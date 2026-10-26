@@ -3,7 +3,7 @@
 {% block content %}
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Типи завдань</h2>
-        <a href="{% url 'task_manager:tasktype-create' %}" class="btn btn-primary">+ Створити тип</a>
+        <a href="{% url 'task_manager:task-type-create' %}" class="btn btn-primary">+ Створити тип</a>
     </div>
 
     <table class="table table-hover shadow-sm">
@@ -20,8 +20,8 @@
                     <td>{{ tasktype.id }}</td>
                     <td>{{ tasktype.name }}</td>
                     <td class="text-end">
-                        <a href="{% url 'task_manager:tasktype-update' pk=tasktype.id %}" class="btn btn-sm btn-outline-secondary">Редагувати</a>
-                        <a href="{% url 'task_manager:tasktype-delete' pk=tasktype.id %}" class="btn btn-sm btn-outline-danger">Видалити</a>
+                        <a href="{% url 'task_manager:task-type-update' pk=tasktype.id %}" class="btn btn-sm btn-outline-secondary">Редагувати</a>
+                        <a href="{% url 'task_manager:task-type-delete' pk=tasktype.id %}" class="btn btn-sm btn-outline-danger">Видалити</a>
                     </td>
                 </tr>
             {% endfor %}

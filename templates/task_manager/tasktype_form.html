@@ -16,7 +16,7 @@
                         {% csrf_token %}
                         {{ form.as_p }}
                         <button type="submit" class="btn btn-success">Зберегти</button>
-                        <a href="{% url 'task_manager:tasktype-list' %}" class="btn btn-secondary">Скасувати</a>
+                        <a href="{% url 'task_manager:task-type-list' %}" class="btn btn-secondary">Скасувати</a>
                     </form>
                 </div>
             </div>

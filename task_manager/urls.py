@@ -1,46 +1,98 @@
 from django.urls import path
-from task_manager.views import (
-    index,
-    TaskListView,
-    TaskDetailView,
-    PositionListView,
-    TaskTypeListView,
-    WorkerListView,
-    PositionUpdateView,
-    PositionCreateView,
-    PositionDeleteView,
-    TaskTypeCreateView,
-    TaskTypeUpdateView,
-    TaskTypeDeleteView,
-    TaskCreateView,
-    TaskUpdateView,
-    TaskDeleteView,
-    WorkerDetailView,
-    WorkerCreateView,
-    WorkerUpdateView,
-    WorkerDeleteView,
-)
+from . import views
 
-app_name = "task_manager"
+app_name = 'task_manager'
 
 urlpatterns = [
-    path("", index, name="index"),
-    path("tasks/", TaskListView.as_view(), name="task-list"),
-    path("tasks/<int:pk>/", TaskDetailView.as_view(), name="task-detail"),
-    path("positions/", PositionListView.as_view(), name="position-list"),
-    path("task-types/", TaskTypeListView.as_view(), name="tasktype-list"),
-    path("workers/", WorkerListView.as_view(), name="worker-list"),
-    path("workers/<int:pk>/", WorkerDetailView.as_view(), name="worker-detail"),
-    path("positions/create/", PositionCreateView.as_view(), name="position-create"),
-    path("positions/<int:pk>/update/", PositionUpdateView.as_view(), name="position-update"),
-    path("positions/<int:pk>/delete/", PositionDeleteView.as_view(), name="position-delete"),
-    path("tasktypes/create/", TaskTypeCreateView.as_view(), name="tasktype-create"),
-    path("tasktypes/<int:pk>/update/", TaskTypeUpdateView.as_view(), name="tasktype-update"),
-    path("tasktypes/<int:pk>/delete/", TaskTypeDeleteView.as_view(), name="tasktype-delete"),
-    path("tasks/create/", TaskCreateView.as_view(), name="task-create"),
-    path("tasks/<int:pk>/update/", TaskUpdateView.as_view(), name="task-update"),
-    path("tasks/<int:pk>/delete/", TaskDeleteView.as_view(), name="task-delete"),
-    path("workers/create/", WorkerCreateView.as_view(), name="worker-create"),
-    path("workers/<int:pk>/update/", WorkerUpdateView.as_view(), name="worker-update"),
-    path("workers/<int:pk>/delete/", WorkerDeleteView.as_view(), name="worker-delete"),
+    path('', views.index, name='index'),
+    path(
+        'tasks/',
+        views.TaskListView.as_view(),
+        name='task-list'
+    ),
+    path(
+        'tasks/create/',
+        views.TaskCreateView.as_view(),
+        name='task-create'
+    ),
+    path(
+        'tasks/<int:pk>/',
+        views.TaskDetailView.as_view(),
+        name='task-detail'
+    ),
+    path(
+        'tasks/<int:pk>/update/',
+        views.TaskUpdateView.as_view(),
+        name='task-update'
+    ),
+    path(
+        'tasks/<int:pk>/delete/',
+        views.TaskDeleteView.as_view(),
+        name='task-delete'
+    ),
+    path(
+        'workers/',
+        views.WorkerListView.as_view(),
+        name='worker-list'
+    ),
+    path(
+        'workers/create/',
+        views.WorkerCreateView.as_view(),
+        name='worker-create'
+    ),
+    path(
+        'workers/<int:pk>/',
+        views.WorkerDetailView.as_view(),
+        name='worker-detail'
+    ),
+    path(
+        'workers/<int:pk>/update/',
+        views.WorkerUpdateView.as_view(),
+        name='worker-update'
+    ),
+    path(
+        'workers/<int:pk>/delete/',
+        views.WorkerDeleteView.as_view(),
+        name='worker-delete'
+    ),
+    path(
+        'positions/',
+        views.PositionListView.as_view(),
+        name='position-list'
+    ),
+    path(
+        'positions/create/',
+        views.PositionCreateView.as_view(),
+        name='position-create'
+    ),
+    path(
+        'positions/<int:pk>/update/',
+        views.PositionUpdateView.as_view(),
+        name='position-update'
+    ),
+    path(
+        'positions/<int:pk>/delete/',
+        views.PositionDeleteView.as_view(),
+        name='position-delete'
+    ),
+    path(
+        'task-types/',
+        views.TaskTypeListView.as_view(),
+        name='task-type-list'
+    ),
+    path(
+        'task-types/create/',
+        views.TaskTypeCreateView.as_view(),
+        name='task-type-create'
+    ),
+    path(
+        'task-types/<int:pk>/update/',
+        views.TaskTypeUpdateView.as_view(),
+        name='task-type-update'
+    ),
+    path(
+        'task-types/<int:pk>/delete/',
+        views.TaskTypeDeleteView.as_view(),
+        name='task-type-delete'
+    ),
 ]
