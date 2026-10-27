@@ -1,3 +1,5 @@
+import os
+
 from typing import Any
 from django.core.management.base import BaseCommand
 from task_manager.models import Position, TaskType, Worker, Task
@@ -45,8 +47,10 @@ class Command(BaseCommand):
                     "position": pos
                 }
             )
+            # DEVELOPMENT ONLY: Using a shared password for seeded database accounts
             if created:
-                worker.set_password("password123")
+                default_password = os.getenv("SEED_PASSWORD", "dev_password123")
+                worker.set_password(default_password)
                 worker.save()
             w_objs.append(worker)
 
@@ -89,7 +93,7 @@ class Command(BaseCommand):
             ),
         ]
         for i, (name, desc, task_type_obj, prio, dline) in enumerate(tasks):
-            task, _ = Task.objects.get_or_create(
+            task, _ = Task.objects.update_or_create(
                 name=name,
                 defaults={
                     "description": desc,

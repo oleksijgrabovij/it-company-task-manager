@@ -1,12 +1,12 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from task_manager.models import Task, Worker, TaskType, Position
 
 
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = '__all__'
+        fields = ["name", "description", "deadline", "priority", "is_completed", "task_type", "assignees"]
         widgets = {'deadline': forms.DateInput(attrs={'type': 'date'})}
 
 
@@ -21,13 +21,13 @@ class TaskSearchForm(forms.Form):
         max_length=255,
         required=False,
         label='',
-        widget=forms.TextInput(attrs={'placeholder': 'Пошук за назвою...'})
+        widget=forms.TextInput(attrs={'placeholder': 'Search by task name...', 'autocomplete': 'off'})
     )
 
     task_type = forms.ModelChoiceField(
         queryset=TaskType.objects.all(),
         required=False,
-        empty_label='Усі типи',
+        empty_label='All task types',
         widget=forms.Select(attrs={'class': 'form-select'})
     )
 
@@ -38,13 +38,19 @@ class WorkerSearchForm(forms.Form):
         required=False,
         label='',
         widget=forms.TextInput(
-            attrs={'placeholder': 'Пошук...', 'autocomplete': 'off'}
+            attrs={'placeholder': 'Search by username, first or last name...', 'autocomplete': 'off'}
         )
     )
 
     position = forms.ModelChoiceField(
         queryset=Position.objects.all(),
         required=False,
-        empty_label='Усі посади',
+        empty_label='All positions',
         widget=forms.Select(attrs={'class': 'form-select'})
     )
+
+
+class WorkerUpdateForm(UserChangeForm):
+    class Meta(UserChangeForm.Meta):
+        model = Worker
+        fields = ["username", "first_name", "last_name", "email", "position"]
