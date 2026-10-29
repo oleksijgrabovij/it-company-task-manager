@@ -11,6 +11,15 @@ A Django-based web application for managing tasks, teams, positions, and worker 
 ## Quick Start
 
 ### 1. Clone the repository
-```bash
 git clone https://github.com/oleksijgrabovij/it-company-task-manager.git
 cd it-company-task-manager
+
+## Live Demo
+The project is deployed and available online: **[IT Company Task Manager Live](https://it-company-task-manager-egcr.onrender.com)**
+
+## Test Credentials
+To explore the application functionalities without registering a new account, you can use the following test credentials:
+
+**Test User:**
+- Username: `test123`
+- Password: `Test12131415!!`
