@@ -1,16 +1,21 @@
 import os
 import sys
+from dotenv import load_dotenv
 
 
-def main() -> None:
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'it_task_manager.settings')
+def main():
+    """Run administrative tasks."""
+    # Load env variables before setting the default module
+    load_dotenv()
+
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', os.getenv('DJANGO_SETTINGS_MODULE', 'it_task_manager.settings.dev'))
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
         raise ImportError(
-            'Could not import Django. Are you sure it is installed and '
-            'available on your PYTHONPATH environment variable? Did you '
-            'forget to activate a virtual environment?'
+            "Couldn't import Django. Are you sure it's installed and "
+            "available on your PYTHONPATH environment variable? Did you "
+            "forget to activate a virtual environment?"
         ) from exc
     execute_from_command_line(sys.argv)
 
